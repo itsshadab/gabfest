@@ -1,0 +1,99 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="row">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="col-sm-2">			
+				<a href="<?php if (!strpos($_SERVER['PHP_SELF'], 'index.php')) echo '../'; ?>index.php" class="navbar-brand">GabFest</a>
+			</div>
+			<div class="col-sm-5">			
+				<form class="input-group" style="margin: 8px 0px;" action="actions/search-name.php">
+					<input type="text" class="form-control" placeholder="Search for..." name="search_name" autocomplete="">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit" name="submit"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</form>
+			</div>
+			<div class="col-sm-5">
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="<?php if (!strpos($_SERVER['PHP_SELF'], 'index.php')) echo '../'; ?>index.php" title="Home"><span class="fa fa-home"></span>&nbsp;Home</a></li>
+						<li><a href="" title="Add Friend"><span class="fa fa-user-plus"></span></a></li>
+						<li class="dropdown"><a href="" class="dropdown-toggle" id="msg" data-toggle="dropdown" title="Messages"><span class="glyphicon glyphicon-inbox"></span></a>
+
+							<ul class="dropdown-menu" role="menu" aria-labelledby="msg">
+							    <li role="presentation" align="center"><a role="menuitem" tabindex="-1" href="#">Mark all as read</a></li>
+							    <li role="presentation" class="divider"></li>
+						    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">A message from Lalit</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message from Ishita</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Message from Piyush</a></li>
+						    </ul>    			
+
+						</li>
+
+						<li class="dropdown"><a href="" class="dropdown-toggle" id="noti" data-toggle="dropdown" title="Notifications"><span class="fa fa-globe"></span></a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="noti">
+							    <li role="presentation" align="center"><a role="menuitem" tabindex="-1" href="#">Mark all as read</a></li>
+							    <li role="presentation" class="divider"></li>
+						    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">lalit accepted your friend request</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">lalit posted on your wall</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">lalit likes your post</a></li>
+						    </ul>    			
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" id="acc" data-toggle="dropdown" title="My Account"><img src="<?php 
+						if(isset($_SESSION['src'])) {
+							if (strpos($_SERVER['PHP_SELF'], 'index.php')) 
+								echo $_SESSION['src']; 
+							else echo '../'.$_SESSION['src'];
+						} else {
+							if (strpos($_SERVER['PHP_SELF'], 'index.php')) 
+								echo 'actions/uploads/temp.png';
+							echo '../';
+						} ?>" style="height:20px; width:20px; padding:1px;" class="img img-responsive img-circle shift-left" alt="Profile-pic">&nbsp;<span class="fa fa-angle-down"></a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="acc">
+
+								<li align="center"><a href="<?php if (strpos($_SERVER['PHP_SELF'], 'profile.php') or strpos($_SERVER['PHP_SELF'], 'events.php') or strpos($_SERVER['PHP_SELF'], 'postjob.php') or strpos($_SERVER['PHP_SELF'], 'jobsearch.php')) echo '../'; ?>components/profile.php" title="Profile"><img src="<?php 
+								if(isset($_SESSION['src'])) {
+									if (strpos($_SERVER['PHP_SELF'], 'index.php')) 
+										echo $_SESSION['src']; 
+									else echo '../'.$_SESSION['src'];
+								} else {
+									if (strpos($_SERVER['PHP_SELF'], 'index.php')) 
+										echo 'actions/uploads/temp.png';
+									echo '../';
+								} ?>" style="height:20px; width:20px; padding:1px;" class="img img-responsive img-circle shift-left" alt="Profile-pic">&nbsp;<?php echo isset($_SESSION['fname']) ? $_SESSION['fname']." ".$_SESSION['lname']: "Dummy User"; ?></a></li>
+								
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php if (strpos($_SERVER['PHP_SELF'], 'profile.php') or strpos($_SERVER['PHP_SELF'], 'events.php') or strpos($_SERVER['PHP_SELF'], 'postjob.php') or strpos($_SERVER['PHP_SELF'], 'jobsearch.php')) echo '../'; ?>components/acc_setting.php"><span class="glyphicon glyphicon-user"></span>&nbsp;<span>Account Settings</span></a></li>
+							    
+							    <li role="presentation" class="divider"></li>
+								
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php
+								if (strpos($_SERVER['PHP_SELF'], 'profile.php') or strpos($_SERVER['PHP_SELF'], 'events.php') or strpos($_SERVER['PHP_SELF'],'postjob.php') or strpos($_SERVER['PHP_SELF'],'jobsearch.php')) echo '../'; ?>index.php?logged=false" ><span class="glyphicon glyphicon-off"></span>&nbsp;<span>Log Out</span></a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="" class="dropdown-toggle" id="noti" data-toggle="dropdown" title="Work"><span class="fa fa-suitcase"></span></a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="work">
+							    <li role="presentation" align="center"><a href="#"><span class="fa fa-book">Learning</span></a></li>
+						    	<li role="presentation" align="center"><a href="<?php if (strpos($_SERVER['PHP_SELF'], 'index.php')) echo 'components/postjob.php'; else echo 'postjob.php' ?>"><span class="fa fa-briefcase">Post job</span></a></li>
+
+						    	<li role="presentation" align="center"><a href="<?php if (strpos($_SERVER['PHP_SELF'], 'index.php')) echo 'components/jobsearch.php'; else echo 'jobsearch.php' ?>"><span class="fa fa-briefcase">Look Up</span></a></li>
+							    
+							    <li role="presentation" class="divider"></li>
+							    
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><h4>Talent Solution</h4>Find and recruit Talent</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><h4>Sales Solution</h4>Unlock sales opportunity</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><h4>Learning Solution</h4>Develop talent accross your organisation</a></li>
+						    </ul>    			
+						</li>
+						<li><a href="#">Find connection</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>

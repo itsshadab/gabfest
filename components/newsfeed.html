@@ -1,0 +1,77 @@
+<?php include "nav.html"; ?>
+<?php include "actions/status.php"; ?>
+<style type="text/css">
+.user-pic {
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background-position: 50%;
+	background-size: cover;
+}
+</style>
+<div style="margin-top:80px;"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3" >
+			<div class="well">
+				<h2 style="text-align:center;"><a href="components/profile.php">Profile</a></h2>
+					<hr>
+			        <p class="">
+			        	<?php
+			        	if(isset($_SESSION['src']))
+				        	$dp = $_SESSION['src']; 
+				        else 
+				        	$dp = 'actions/uploads/temp.png';
+			        	?>
+			        	<div class="user-pic" style="background-image: url('<?php echo $dp; ?>')"></div>
+			        </p>
+			        <hr>
+			        <p><span class="glyphicon glyphicon-user"></span> <?php echo isset($_SESSION['fname']) ? $_SESSION['fname']." ".$_SESSION['lname'] : "Dummy User"?></p>
+			        <p><span class="glyphicon glyphicon-pencil"></span><?php echo $_SESSION['headline'] ?></p>
+			</div>
+			<div class="well">
+				<h2 style="text-align:center;"><a href="#">Interests</a></h2>
+				<p>
+					<span class="label label-default">News</span>
+					<span class="label label-primary">Cricket</span>
+					<span class="label label-success">Labels</span>
+					<span class="label label-info">Football</span>
+					<span class="label label-warning">Gaming</span>
+					<span class="label label-danger">Friends</span>
+				</p>
+			</div>
+			<div class="alert alert-success fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+				<p><strong>Ey!</strong></p>
+				People are looking at your profile. Find out who.
+			</div>
+		</div>
+		<div class="col-md-6">
+    		<div class="well" style="padding: 10px 15px;">
+    			<h4 class="">Social Media</h4>
+    			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">	
+    				<input type="text" name="post" class="form-control" autocomplete="false" placeholder="Your text here.">
+    				<button type="submit" class="btn btn-default" name="post-submit"><span class="glyphicon glyphicon-pencil"></span> Post</button>
+    			</form>
+    			<form action="actions/upload.php?uid=<?php echo $_SESSION['uid']; ?>" method="post" enctype="multipart/form-data">
+	    			<div>
+	    				<input type="file" name="fileToUpload" id="fileToUpload" value="">
+		    			<input type="submit" class="btn btn-default" value="upload" name="img-submit">
+	    			</div>
+    			</form>
+        	</div>
+        	<?php require 'actions/posts.php'; ?>
+		</div>
+		<div class="col-md-3">
+			<div class="well">
+				<a href='components/events.php'><h4>Upcoming Event</h4></a>
+				<hr>
+					<?php 
+					include 'all-events.php';
+					?>
+
+			</div>
+		</div>
+	</div>
+</div>
